@@ -1,0 +1,127 @@
+/* ── Fontshare imports ───────────────────────────────────────────────────── */
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@700,600&f[]=cabinet-grotesk@800,700,600,500,400&f[]=jet-brains-mono@400,500&display=swap");
+
+/* ── CSS Variables ───────────────────────────────────────────────────────── */
+:root {
+  --bg:      #060810;
+  --surface: #0C1018;
+  --card:    #101520;
+  --border:  #1A2333;
+  --accent:  #6EE7F7;
+  --purple:  #A78BFA;
+  --gold:    #FCD34D;
+  --green:   #34D399;
+  --orange:  #FB923C;
+  --red:     #F43F5E;
+  --text:    #E2EAF4;
+  --muted:   #5A7A94;
+  --white:   #FFFFFF;
+
+  --font-display: "Clash Display", sans-serif;
+  --font-body:    "Cabinet Grotesk", sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --transition-fast:   0.18s ease;
+  --transition-base:   0.28s ease;
+  --transition-spring: 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1);    opacity: 1; }
+  50%       { transform: scale(1.06); opacity: 0.6; }
+}
+
+@keyframes badge-float-1 {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+@keyframes badge-float-2 {
+  0%, 100% { transform: translateY(-4px); }
+  50%       { transform: translateY(6px); }
+}
+@keyframes badge-float-3 {
+  0%, 100% { transform: translateY(3px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes badge-float-4 {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-9px); }
+}
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 0.15; }
+}
+
+/* ── Utility classes ─────────────────────────────────────────────────────── */
+.cursor-blink  { animation: cursor-blink 1.1s infinite; }
+.pulse-ring    { animation: pulse-ring 4s ease-in-out infinite; }
+
+.float-1 { animation: badge-float-1 3s ease-in-out infinite; }
+.float-2 { animation: badge-float-2 3.5s ease-in-out infinite; }
+.float-3 { animation: badge-float-3 2.8s ease-in-out infinite; }
+.float-4 { animation: badge-float-4 4s ease-in-out infinite; }
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(var(--accent) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.022;
+}
+
+/* Section shared padding */
+.section-pad {
+  padding: 110px clamp(16px, 5vw, 80px);
+}
+
+/* FadeUp animation applied via JS (inline style) */
+.fade-up-init {
+  opacity: 0;
+  transform: translateY(36px);
+}
+.fade-up-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-spring), transform var(--transition-spring);
+}
